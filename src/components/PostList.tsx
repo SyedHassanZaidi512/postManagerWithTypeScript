@@ -4,6 +4,8 @@ import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Tooltip from "@mui/material/Tooltip";
 import Divider from "@mui/material/Divider";
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
 import PostDetail from "./PostDetail";
 import Form from "./Form";
 import { styled } from "@mui/material/styles";
@@ -57,9 +59,12 @@ function PostList() {
 
   if (posts.length <= 0) {
     return (
-      <IsEmptyList sx={{ fontWeight: "bold" }}>
-        <Typography variant="h2">fail to get posts</Typography>
-      </IsEmptyList>
+      <Backdrop
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={true}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
     );
   }
 

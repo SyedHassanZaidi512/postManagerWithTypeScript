@@ -9,6 +9,7 @@ import { openForm, removeFromFavourite } from "../redux/postSlice";
 import CloseIcon from "@mui/icons-material/Close";
 import Form from "./Form"
 import {postType} from "../types"
+
 const Item  = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(1),
   textAlign: "center",
@@ -36,7 +37,7 @@ function FavouriteList() {
     dispatch(removeFromFavourite(filterArray));
   };
 
-  if ( favouriteList.length <= 0 ) {
+  if ( favouriteList?.length <= 0 ) {
     return (
       <IsEmptyList sx={{ fontWeight: "bold" }}>
         <Typography variant="h2">No post added</Typography>
