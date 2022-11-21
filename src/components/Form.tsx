@@ -19,7 +19,7 @@ function Form() {
   const favouriteList : postType[] = useAppSelector((state) => state.post.favouritePosts);
   const post : postType | null = useAppSelector((state) => state.post.postToEdit);
 
-  useEffect(() => {
+  useEffect(() : void => {
     if (post) {
       setTitle(post.title);
       setBody(post.body);
@@ -29,7 +29,8 @@ function Form() {
     }
   }, [post]);
 
-  const submitForm = (title: string, body: string) => {
+  const submitForm = (title: string, body: string) : void  => {
+
     if (post) {  // to Edit post
       const newArray = posts.map((element: postType) => {
         if (element.id === post.id) {

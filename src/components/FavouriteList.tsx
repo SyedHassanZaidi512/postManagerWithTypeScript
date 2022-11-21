@@ -1,4 +1,3 @@
-import React from "react";
 import "../App.css";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
@@ -10,7 +9,7 @@ import { openForm, removeFromFavourite } from "../redux/postSlice";
 import CloseIcon from "@mui/icons-material/Close";
 import Form from "./Form"
 import {postType} from "../types"
-const Item = styled(Paper)(({ theme }) => ({
+const Item  = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(1),
   textAlign: "center",
   height: "10rem",
@@ -28,16 +27,16 @@ const IsEmptyList = styled(Paper)(({ theme }) => ({
 
 function FavouriteList() {
   const dispatch = useAppDispatch();
-  const favouriteList = useAppSelector((state) => state.post.favouritePosts);
+  const favouriteList : postType[] = useAppSelector((state) => state.post.favouritePosts);
 
-  const removeFromFavourites = (id: number) => {
+  const removeFromFavourites = (id: number) : void => {
     const filterArray = favouriteList.filter((element: postType) => {
       return element.id !== id;
     });
     dispatch(removeFromFavourite(filterArray));
   };
 
-  if (!favouriteList || favouriteList.length <= 0) {
+  if ( favouriteList.length <= 0 ) {
     return (
       <IsEmptyList sx={{ fontWeight: "bold" }}>
         <Typography variant="h2">No post added</Typography>
@@ -49,9 +48,7 @@ function FavouriteList() {
     <div>
       <Form />
       <div className="postsList">
-        {favouriteList &&
-          favouriteList.length > 0 &&
-          favouriteList.map((post: postType) => (
+        {favouriteList?.map((post: postType) => (
             <Box
               key={post.id}
               sx={{
@@ -75,7 +72,7 @@ function FavouriteList() {
                   textOverflow="ellipsis"
                   display="inline-block"
                 >
-                  {post.title}
+                  {post?.title}
                 </Typography>
                 <Divider />
                 <Button

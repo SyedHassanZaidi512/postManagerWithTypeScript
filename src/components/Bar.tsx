@@ -13,7 +13,7 @@ import { useAppSelector, useAppDispatch } from "../hooks";
 import { openForm } from "../redux/postSlice";
 function Bar() {
   const dispatch = useAppDispatch();
-  const length = useAppSelector((state) => state.post.favouritePosts).length;
+  const length : number = useAppSelector((state) => state.post.favouritePosts).length;
   return (
     <div className="navbar">
       <Box sx={{ flexGrow: 1 }}>

@@ -1,15 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import {postType} from "../types"
-
-
-type SliceState = {
-  posts: postType[];
-  favouritePosts: postType[];
-  postToEdit: postType | null;
-  open: boolean;
-  postDetails: postType;
-  showDetails: boolean;
-};
+import {SliceState} from "../types"
 
 const initialState: SliceState = {
   posts: [],
@@ -24,38 +15,39 @@ const postSlice = createSlice({
   name: "Post",
   initialState,
   reducers: {
-    getPostsData: (state, action) => {
+    getPostsData: (state, action):void => {
       state.posts = action.payload;
+      console.log(state.posts,"what posts have")
     },
-    openForm: (state, action: PayloadAction<postType | null>) => {
+    openForm: (state, action: PayloadAction<postType | null>):void => {
       state.open = true;
       state.postToEdit = action.payload;
     },
-    closeForm: (state) => {
+    closeForm: (state):void => {
       state.open = false;
     },
     addPosts: (
       state,
       action: PayloadAction<{ id: number; title: string; body: string }>
-    ) => {
+    ) : void => {
       state.posts = [...state.posts, action.payload];
     },
-    addToFavourite: (state, action: PayloadAction<postType>) => {
+    addToFavourite: (state, action: PayloadAction<postType>) : void => {
       state.favouritePosts = [...state.favouritePosts, action.payload];
     },
     removeFromFavourite: (state, action: PayloadAction<postType[]>) => {
       state.favouritePosts = action.payload;
     },
-    editPost: (state, action) => {
+    editPost: (state, action) : void => {
       state.posts = action.payload.newArray;
       state.favouritePosts = action.payload.editFavouriteList;
     },
-    showPostDetails: (state, action) => {
+    showPostDetails: (state, action) : void => {
       state.showDetails = true;
       state.postDetails = action.payload;
     },
-    hideDetails: (state) => {
-      state.showDetails = false;
+    hideDetails: (state) : void => {
+      state.showDetails = false ;
     },
   },
 });

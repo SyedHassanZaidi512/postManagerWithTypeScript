@@ -6,7 +6,7 @@ import Modal from "@mui/material/Modal";
 import { hideDetails } from "../redux/postSlice";
 import { useAppSelector,useAppDispatch } from "../hooks";
 import {postType} from "../types";
-const style = {
+const style : object = {
   position: "absolute",
   top: "50%",
   left: "50%",
@@ -25,7 +25,7 @@ function PostDetail() {
   const postData : postType= useAppSelector((state) => state.post.postDetails);
   
   return (
-    <div   onClick={() => dispatch(hideDetails())} className="postDetail">
+    <div   onClick={()  => dispatch(hideDetails())} className="postDetail">
       <div >
         <Modal
           open={show}
@@ -44,7 +44,7 @@ function PostDetail() {
               id="modal-modal-title"
               variant="body1"
             >
-              {postData.title}
+              {postData?.title}
             </Typography>
             <Typography
               id="modal-modal-title"
@@ -63,7 +63,7 @@ function PostDetail() {
               variant="body1"
               sx={{ mt: 2, marginTop: "1%" }}
             >
-              {postData.body}
+              {postData?.body}
             </Typography>
             <Button
               sx={{
@@ -72,7 +72,7 @@ function PostDetail() {
                 width: "50px",
               }}
               variant="text"
-              onClick={() => dispatch(hideDetails())}
+              onClick={()  => dispatch(hideDetails())}
             >
               close
             </Button>

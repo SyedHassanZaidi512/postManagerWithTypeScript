@@ -16,11 +16,11 @@ import { getPostsData } from "./redux/postSlice";
 function App() {
   const dispatch = useDispatch();
 
-  useEffect(() => {
+  useEffect(() : void  => {
     getPosts();
   }, []);
 
-  const getPosts = async () => {
+  const getPosts = async ()  =>  {
     try {
       const res = await axios.get("https://dummyjson.com/posts/");
       dispatch(getPostsData(res.data.posts));
@@ -32,8 +32,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Bar />
-
+        <Bar/>
         <Routes>
           <Route path="/" element={<PostList />} />
           <Route path="/favourite" element={<FavouriteList />} />
